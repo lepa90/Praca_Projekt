@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}
+    Place List
+{% endblock %}
+{% block content %}
+    {% if user.is_hotel_staff %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Number</th>
+                        <th scope="col" class="text-center">Class</th>
+                        <th scope="col" class="text-center"></th>
+                        <th scope="col" class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for place in places %}
+                    <tr>
+                        <th scope="row" class="text-center">as{{ forloop.counter }}</th>
+                        <th scope="col" class="text-center">aaasss{{ place.number }}</th>
+                        <th scope="col" class="text-center">aaaaaaassssss{{ place.get_category }}</th>
+                        <th scope="col"><form action="{% url 'ideass:places' %}{{place.number}}/" method="GET">
+                                            <input type="hidden" name="method" value="EDIT">
+                                            <button type="submit" class="btn btn-success py-0">Edit</button>
+                                        </form></th>
+                        <th scope="col"><form action="{% url 'ideass:places' %}{{place.number}}/" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger py-0">Delete</button>
+                                        </form></th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+         <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Number</th>
+                        <th scope="col" class="text-center">Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for place in places %}
+                    <tr>
+                        <th scope="row" class="text-center">{{ forloop.counter }}</th>
+                        <th scope="col" class="text-center">{{ place.number }}</th>
+                        <th scope="col" class="text-center">{{ place.get_category }}</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% if not user.is_hotel_staff %}
+    <div class="text-center">This is the list of all our places.</div>
+    {% endif %}
+{% endblock %}

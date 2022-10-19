@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}
+    Reservation Management System
+{% endblock title %}
+{% block content %}
+
+
+<ul>
+    <h4>Front end:</h4>
+    Użytkownik niezalogowany:
+    <li>- może zobaczyć listę wszystkich miejsc parkingowych</li>
+    <li>- może zobaczyć listę wszystkich rezerwacji z zakrytymi danymi</li>
+</ul>
+
+<ul>
+    Użytkownik zalogowany (Client):
+    <li>- może zobaczyć listę wszystkich miejsc parkingowych</li>
+    <li>- może zobaczyć listę wszystkich rezerwacji z zakrytymi danymi innych użytkowników</li>
+    <li>- może tworzyć nowe rezerwacje</li>
+</ul>
+
+<ul>
+    Użytkownik zalogowany (Staff):
+    <li>- może zobaczyć listę wszystkich miejsc oraz rezerwacji z odkrytymi danymi</li>
+    <li>- może tworzyć nowe oraz edytować i usuwać dowolne rezerwacje i miejsca</li>
+    <li>- może wyszukiwać rezerwacje wg. wybranych kryteriów</li>
+</ul>
+
+
+{% endblock %}
+

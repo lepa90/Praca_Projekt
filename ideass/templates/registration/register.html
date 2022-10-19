@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+    Register
+{% endblock title %}
+{% block content %}
+{% load rest_framework %}
+<form method="post">
+	{% if REGISTRATION_OPEN is False %}
+	<div class="text-center text-danger">
+		Registrations are currently disabled!
+	</div>
+	{% endif %}
+    {% csrf_token %}
+	{% for field in form %}
+		{{ field.errors }}
+		<div class="my-2 text-end">{{ field.label_tag }} {{ field }}</div>
+    {% endfor %}
+	<div class="my-2" style="text-align: right;">
+		<button type="submit" class="btn btn-success my-1">Register</button>
+	</div>
+</form>
+{% endblock %}
